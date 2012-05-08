@@ -11,7 +11,7 @@ body{
 table{
     text-align:center;
     width:100%;
-    border:2px solid #E6E6E6;
+    border:2px #E6E6E6 solid;
     border-radius: 8pt;
     -moz-border-radius: 8pt;
     -webkit-border-radius: 8pt;
@@ -29,7 +29,7 @@ h2{
     width:900px;
     background-color:#FFF;
     margin:0px auto;
-    border: 2px solide #E6E6E6;
+    border: 2px #E6E6E6 solid;
     border-radius: 8pt;
     -moz-border-radius: 8pt;
     -webkit-border-radius: 8pt;
@@ -126,9 +126,6 @@ div#photo li{
 .field{
     clear:both;
 }
-span#albumName{
-    float: center;
-}
 span#albumOpr{
     width:100px;
 }
@@ -136,7 +133,7 @@ div#foot{
     margin-top:10px;
 }
 #multiFileList{
-    fload:left;
+    float: left;
     clear:both;
     margin-bottom:5px;
     margin-left:5px;
