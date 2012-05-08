@@ -1,0 +1,17 @@
+<h2>当前用户信息</h2>
+<div><strong>Email：</strong><%= @user.email %></div>
+<div>
+  <strong>所有照片：</strong>
+  <table>
+  <tr>
+    <td>标题</td>
+    <td>描述</td>
+  </tr>
+  <% @upload_photos.each do |photo| %>
+  <tr>
+    <td><%= link_to photo.title, photo %></td>
+    <td><%= photo.description %></td>
+  </tr>
+<% end %>
+<table>
+</div>

@@ -1,0 +1,54 @@
+<%= form_for(@p_album) do |f| %>
+  <% if @p_album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@p_album.errors.count, "个错误") %></h2>
+
+      <ul>
+      <% @p_album.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div id="displayAlbum">
+  <h2>已有的相册</h2>
+  <div id="albumList">
+    <%
+    allAlbum
+    @albums.each do |p_album|
+    album_name=p_album.album_name
+    %>
+    <div id="albumItem" class="albumItem">
+      <%
+      photoCount = UploadPhoto.count_by_sql ["select count(*) from upload_photos where albumBelongTo=?",album_name]
+      
+      if photoCount==0
+      %>
+      <%= image_tag "icon/no_photo_s.png" %><br />
+      <%
+      else
+        @photoFirst=UploadPhoto.where(["albumBelongTo=?", album_name])
+      %>
+      <div class="image"><%= link_to image_tag("upload/"+@photoFirst[0].photoURL, :width => "100"), p_album %></div>
+      <br />
+    <% end %>
+      <span id="albumName"><%= album_name %>&nbsp;共&nbsp;<%= photoCount %>张</span><br />
+      <span class="hide" id="albumOpr"><%= link_to '删除', p_album, :confirm => '确定删除此相册?注意：删除此相册的同时，此相册下的所有照片也会被删除！', :method => :delete %><%= link_to '修改', edit_p_album_path(p_album) %></span>
+    </div>
+    <% end %>
+  </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :相册名称 %><br />
+    <%= f.text_field :album_name %>
+  </div>
+  <div class="field">
+    <%= f.label :相册描述 %><br />
+    <%= f.text_area :album_description, :rows => 6 %>
+  </div>
+  <div class="actions">
+    <%= f.submit @action_name %>
+  </div>
+<% end %>

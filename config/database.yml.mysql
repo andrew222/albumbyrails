@@ -1,0 +1,17 @@
+defaults: &defaults
+  adapter: mysql2
+  host: localhost
+  username: root
+  password: root
+
+development:
+  <<: *defaults
+  database: album_development
+
+test: &test
+  <<: *defaults
+  database: album_test
+
+production:
+  <<: *defaults
+  database: album_production

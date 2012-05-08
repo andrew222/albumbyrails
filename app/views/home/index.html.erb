@@ -1,0 +1,6 @@
+<%= form_for(UploadPhoto.new, :html => { :multipart => true }) do |f| %>
+<%= render(:partial => "head", :locals => {:name => "andrew"}) %>
+<div class="actions">
+    <%= f.submit "开始上传" %>
+  </div>
+<% end %>

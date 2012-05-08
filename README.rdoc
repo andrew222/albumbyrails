@@ -1,0 +1,3 @@
+Welcome to andrew222
+
+This is a album app developed by rails.In this app you can manage you album include create new album,edit and delete it. Also you can upload your images under the album you choosed.
