@@ -14,9 +14,9 @@
     <% else %>
       <h3>暂时没有评论！</h3>
     <% end %>
+  </div>
     <hr />  
     <%= render "comments/form"%>
-  </div>
 
 <% if @upload_photo.user_id == current_user.id %>
 <%= link_to '编辑', edit_upload_photo_path(@upload_photo) %>|

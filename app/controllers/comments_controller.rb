@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
       if @comment.save
         flash[:notice] = "评论保存成功！"
         format.html { redirect_to @upload_photo }
+        format.js
         format.json { render :json => @comment } # this
       else
         flash[:alert] = "无法保存评论！"
