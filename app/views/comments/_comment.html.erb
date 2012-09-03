@@ -5,7 +5,7 @@
 </div>
 <div style="margin-left: 5em"><%= simple_format(comment.text) %>
 <% if current_user.id == comment.user_id %>
-<%= link_to "编辑", edit_upload_photo_comment_path(@upload_photo, comment) %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "删除", [@upload_photo, comment], :method => :delete %>
+<%= link_to "编辑", edit_upload_photo_comment_path(@upload_photo, comment) %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "删除", [@upload_photo, comment], :method => :delete, :remote => true %>
 <% end %>
 </div>
 <% end %>

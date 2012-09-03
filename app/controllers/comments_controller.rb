@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   before_filter :find_photo
   before_filter :format_time
-  
+
   def create 
+    # @action_name = "提交"
     @comment = @upload_photo.comments.build(params[:comment].merge(:user => current_user))
     @comment.update_attribute(:post_time, @now)
     respond_to do |format|
@@ -28,9 +29,14 @@ class CommentsController < ApplicationController
     @comment = @upload_photo.comments.find(params[:id])
     if @comment.update_attributes(params[:comment])
       flash[:notice] = "评论成功更新"
-      redirect_to @upload_photo
+      respond_to do |format|
+        format.html { redirect_to @upload_photo }
+        format.js
+      end
     else
-      redirect_to @upload_photo
+      respond_to do |format|
+        redirect_to @upload_photo
+      end
     end
   end 
   
@@ -38,6 +44,12 @@ class CommentsController < ApplicationController
     @comment = @upload_photo.comments.find(params[:id])
     @comment.destroy
     redirect_to @upload_photo
+
+    # respond_to do |format|
+
+    #   format.html { redirect_to @upload_photo }
+    #   format.js
+    # end
   end
   
   private
