@@ -13,8 +13,9 @@ gem "heroku"
 
 gem 'devise'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 # gem 'mysql2'
+gem 'pg'
 
 gem 'json'
 

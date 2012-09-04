@@ -42,7 +42,7 @@ class UploadPhotosController < ApplicationController
   # POST /upload_photos
   # POST /upload_photos.json
   def create
-    #@current_album = find_album(params[:albumBelongTo])
+    #@current_album = find_album(params[:albumbelongto])
     @upload_photo = UploadPhoto.new(params[:upload_photo].merge!(:user => current_user))
     #@upload_photo.p_album_id = @current_album
     

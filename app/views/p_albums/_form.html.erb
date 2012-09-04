@@ -21,14 +21,14 @@
     %>
     <div id="albumItem" class="albumItem">
       <%
-      photoCount = UploadPhoto.count_by_sql ["select count(*) from upload_photos where albumBelongTo=?",album_name]
+      photoCount = UploadPhoto.count_by_sql ["select count(*) from upload_photos where albumbelongto=?",album_name]
       
       if photoCount==0
       %>
       <%= image_tag "icon/no_photo_s.png" %><br />
       <%
       else
-        @photoFirst=UploadPhoto.where(["albumBelongTo=?", album_name])
+        @photoFirst=UploadPhoto.where(["albumbelongto=?", album_name])
       %>
       <div class="image"><%= link_to image_tag("upload/"+@photoFirst[0].photoURL, :width => "100"), p_album %></div>
       <br />

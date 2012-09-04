@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504053620) do
+ActiveRecord::Schema.define(:version => 20120904054627) do
 
   create_table "comments", :force => true do |t|
     t.text     "text"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120504053620) do
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
     t.integer  "p_album_id"
+    t.string   "albumbelongto"
   end
 
   create_table "users", :force => true do |t|

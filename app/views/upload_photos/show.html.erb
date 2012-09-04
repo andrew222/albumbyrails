@@ -4,7 +4,7 @@
     <div>标题：<%= @upload_photo.title %></div>
     <div>描述：<%= @upload_photo.description %></div>
     <div id="image">预览：<a href="/assets/upload/<%= @upload_photo.photoURL %>" title="点击查看大图"><%= image_tag("upload/"+@upload_photo.photoURL, :width => "150", :class => "image_border") %></a></div>
-    <div>所属相册：<%= @upload_photo.albumBelongTo %></div>
+    <div>所属相册：<%= @upload_photo.albumbelongto %></div>
   </div>
   
   <div id="comments">
