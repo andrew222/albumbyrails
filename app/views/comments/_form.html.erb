@@ -1,6 +1,6 @@
 <strong><%= @action_name %>评论</strong>
 
-	<%= form_for ([@upload_photo, @comment], :remote => true) do |f|%>
+	<%= form_for ([@upload_photo, @comment]) do |f|%>
 
 	<p>
 	<%= f.label :text, "评论内容："%>
