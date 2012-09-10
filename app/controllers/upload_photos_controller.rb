@@ -6,7 +6,7 @@ class UploadPhotosController < ApplicationController
                                              :show]
   
   before_filter :find_photo, :only => [:show, :edit, :update, :destroy]
-  
+
   def index
     @upload_photos = UploadPhoto.find_all_by_user_id(current_user.id)
 
@@ -42,12 +42,11 @@ class UploadPhotosController < ApplicationController
   # POST /upload_photos
   # POST /upload_photos.json
   def create
-    #@current_album = find_album(params[:albumbelongto])
     @upload_photo = UploadPhoto.new(params[:upload_photo].merge!(:user => current_user))
-    #@upload_photo.p_album_id = @current_album
     
-    #if find_photo(@upload_photo.photoURL)    
       @upload_photo.photoURL=uploadPhoto(@upload_photo.photoURL);
+     
+
   
       respond_to do |format|
         if @upload_photo.save

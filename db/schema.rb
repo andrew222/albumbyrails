@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904054627) do
+ActiveRecord::Schema.define(:version => 20120907033647) do
 
   create_table "comments", :force => true do |t|
     t.text     "text"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120904054627) do
     t.integer  "user_id"
     t.integer  "p_album_id"
     t.string   "albumbelongto"
+    t.string   "avatar"
   end
 
   create_table "users", :force => true do |t|

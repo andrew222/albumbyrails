@@ -4,4 +4,5 @@ class PAlbum < ActiveRecord::Base
  validates_uniqueness_of :album_name, :uniqueness => true, :message => "必须唯一"
 
  belongs_to :user
+ has_many :upload_photo, :dependent => :destroy
 end

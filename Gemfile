@@ -18,6 +18,9 @@ gem 'devise'
 # gem 'mysql2'
 gem 'pg'
 
+
+gem "carrierwave"
+
 gem 'json'
 
 # Gems used only for assets and not required
