@@ -1,0 +1,19 @@
+%h2所有相册
+= link_to '创建新相册+', new_p_album_path
+%table
+  %tr
+    %th相册名称
+    %th相册描述
+    %th{:cols =>"3"}操作
+  - @p_albums.each do |p_album|
+    %tr
+      %td
+        = p_album.album_name
+      %td
+        = p_album.album_description
+      %td
+        = link_to '详细', p_album
+      %td
+        = link_to '修改', edit_p_album_path(p_album)
+      %td
+        = link_to '删除', p_album, :confirm => '确定删除此相册?', :method => :delete

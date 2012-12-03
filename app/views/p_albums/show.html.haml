@@ -1,0 +1,18 @@
+.alert.alert-success
+  = notice
+  %button.close{"data-dismiss" => "alert", :type => "button"} ×
+= link_to '修改', edit_p_album_path(@p_album)
+|
+\#{link_to '后退', p_albums_path}
+%table
+  %tr
+    %th 相册名称
+    %th 相册描述
+    %th 本相册中所有照片
+  %tr
+    %td= @p_album.album_name
+    %td= @p_album.album_description
+    %td.images
+      - @photos=UploadPhoto.where(["albumBelongTo=?", @p_album.album_name])
+      - @photos.each do |photo|
+        = link_to image_tag("upload/"+photo.photoURL, :width => "100"), photo

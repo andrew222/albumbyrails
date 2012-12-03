@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @upload_photos = UploadPhoto.find_all_by_user_id(@user.id)
+    @upload_photos = UploadPhoto.where(id: @user.id)
   end
   
   def destroy

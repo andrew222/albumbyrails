@@ -7,15 +7,24 @@ gem 'rails', '3.2.2.rc1'
 
 gem 'execjs'
 
-gem 'therubyracer'
+gem 'therubyracer', :platform => :ruby
 
 gem "heroku"
 
+gem 'haml-rails', '>= 0.3.4', :group => :development
+
 gem 'devise'
 
-#gem 'sqlite3'
+
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+
+gem "twitter-bootstrap-rails", '~> 2.0.3'
+
+gem 'sqlite3'
 # gem 'mysql2'
-gem 'pg'
+# gem 'pg'
+
+gem "mongoid", "~> 3.0.0"
 
 gem 'json'
 
@@ -26,8 +35,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -47,3 +54,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug'
+
+group :development, :test do
+	gem 'rspec-rails'
+end

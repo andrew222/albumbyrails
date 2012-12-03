@@ -6,7 +6,7 @@ class PAlbumsController < ApplicationController
                                              :show]
   
   def index
-    @p_albums = PAlbum.find_all_by_user_id(current_user.id)
+    @p_albums = PAlbum.where(user_id: current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -31,10 +31,10 @@ class PAlbumsController < ApplicationController
     @p_album = PAlbum.new
     @action_name ="创建"
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @p_album }
-    end
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render :json => @p_album }
+    # end
   end
 
   # GET /p_albums/1/edit
@@ -46,7 +46,11 @@ class PAlbumsController < ApplicationController
   # POST /p_albums
   # POST /p_albums.json
   def create
-    @p_album = PAlbum.new(params[:p_album].merge!(:user => current_user))
+    @p_album = PAlbum.new(
+      album_name: params[:p_album][:album_name],
+      album_description: params[:p_album][:album_description],
+      user_id: current_user.id
+    )
 
     respond_to do |format|
       if @p_album.save
@@ -79,7 +83,7 @@ class PAlbumsController < ApplicationController
   # DELETE /p_albums/1.json
   def destroy
     @p_album = PAlbum.find(params[:id])
-    _delRecord("upload_photos", "albumbelongto", @p_album.album_name)
+    _delRecord("upload_photos", "albumBelongTo", @p_album.album_name)
     @p_album.destroy
 
     respond_to do |format|

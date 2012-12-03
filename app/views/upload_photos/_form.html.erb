@@ -31,7 +31,7 @@
   <div class="field">
     <%= f.label :选择相册 %><br />
       <% allAlbum %>
-      <%= f.select :albumbelongto, options_for_select(@arrAlbums) %><span><%= link_to "或者创建新相册", new_p_album_path%></span>
+      <%= f.select :albumBelongTo, options_for_select(@arrAlbums) %><span><%= link_to "或者创建新相册", new_p_album_path%></span>
   </div>
   <div class="actions">
     <%= f.submit @action_name %>
