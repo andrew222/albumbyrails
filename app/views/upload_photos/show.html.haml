@@ -1,0 +1,24 @@
+.alert.alert-success
+#photo
+  %div 标题：
+  = @upload_photo.title
+  %div 描述：
+  = @upload_photo.description
+  #image预览：
+  = link_to(image_tag("upload/"+@upload_photo.photoURL, :width => "150", :class => "image_border"), "/assets/upload/<%= @upload_photo.photoURL %>", :title => "点击查看大图")
+  %div 所属相册：
+  = @upload_photo.albumBelongTo
+#comments
+  - if @upload_photo.comments.exists?
+    %h3 所有评论
+    = render @upload_photo.comments.select(&:persisted?)
+  - else
+    %h3 暂时没有评论！
+  %hr  
+  = render "comments/form"
+  - if @upload_photo.user_id == current_user.id
+    = link_to '编辑', edit_upload_photo_path(@upload_photo)
+    |
+    = link_to '后退', upload_photos_path
+
+

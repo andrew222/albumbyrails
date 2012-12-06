@@ -42,17 +42,23 @@ class UploadPhotosController < ApplicationController
   # POST /upload_photos
   # POST /upload_photos.json
   def create
-    @upload_photo = UploadPhoto.new(params[:upload_photo].merge!(:user => current_user))
-      @upload_photo.photoURL=uploadPhoto(@upload_photo.photoURL);
-  
+    album = find_album(params[:upload_photo][:albumBelongTo]).first
+    options = params[:upload_photo]
+    @upload_photo = album.upload_photos.create(
+        title: options[:title],
+        description: options[:description],
+        photoURL: uploadPhoto(options[:photoURL]),
+        albumBelongTo: options[:albumBelongTo],
+        user_id: options[:user_id]
+    )
       respond_to do |format|
-        if @upload_photo.save
+      # #   if @upload_photo.save
           format.html { redirect_to @upload_photo, :notice => '照片上传成功。' }
           format.json { render :json => @upload_photo, :status => :created, :location => @upload_photo }
-        else
-          format.html { render :action => "new" }
-          format.json { render :json => @upload_photo.errors, :status => :unprocessable_entity }
-        end
+      #   # else
+      #   #   format.html { render :action => "new" }
+      #   #   format.json { render :json => @upload_photo.errors, :status => :unprocessable_entity }
+      #   # end
       end
     #end
   end
@@ -119,6 +125,6 @@ class UploadPhotosController < ApplicationController
   end
   
   def find_album(album_name)
-    return PAlbum.where(["album_name=?", album_name])
+    return PAlbum.where(album_name: album_name)
   end
 end

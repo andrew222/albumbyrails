@@ -1,7 +1,17 @@
 # encoding: utf-8 
-class UploadPhoto < ActiveRecord::Base  
-  belongs_to :user
-  has_many :comments
+class UploadPhoto
+	include Mongoid::Document
+  include Mongoid::Timestamps
+
+ 	field :title
+ 	field :description
+ 	field :photoURL
+ 	field :albumBelongTo
+ 	# field :user_id
+ 	
+  # belongs_to :user
+  belongs_to :p_album
+  has_many :comments, dependent: :delete
  
   validates_presence_of :photoURL, :message => "图像地址不能为空"
 

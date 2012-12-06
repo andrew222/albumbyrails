@@ -1,0 +1,21 @@
+%h2所有照片
+
+%table
+  %tr
+    %th标题
+    %th照片描述
+    %th照片预览
+    %th所属相册
+    th{ :cols => "3" }操作
+- @upload_photos.each do |upload_photo|
+  %tr
+    %td= upload_photo.title
+    %td= upload_photo.description
+    %td.image= link_to(image_tag("upload/"+upload_photo.photoURL, :width => "100" ), upload_photo)
+    %td= upload_photo.albumBelongTo
+    %td= link_to '显示', upload_photo
+    %td= link_to '编辑', edit_upload_photo_path(upload_photo)
+    %td= link_to '删除', upload_photo, :confirm => '确定删除?', :method => :delete
+%br
+
+= link_to '上传新照片', new_upload_photo_path

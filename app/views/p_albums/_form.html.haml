@@ -1,0 +1,43 @@
+= form_for(@p_album) do |f|
+  - if @p_album.errors.any?
+    #error_explanation
+      %2h2= pluralize(@p_album.errors.count, "个错误")
+
+      %ul
+      - @p_album.errors.full_messages.each do |msg|
+        %li= msg
+  #displayAlbum
+    %h2已有的相册
+    #albumList
+      - allAlbum
+      - @albums.each do |p_album|
+      - album_name=p_album.album_name
+        #albumItem.albumItem
+          - photos = UploadPhoto.where(albumBelongTo: album_name)
+          
+          - if photos.count==0
+          = image_tag("icon/no_photo_s.png")
+          %br
+          - else
+            - photoFirst=photos.first
+            .image= link_to image_tag("upload/"+photoFirst.photoURL, :width => "100"), p_album
+          %br
+          %span#albumName
+          = album_name
+          &nbsp;共&nbsp;
+          = photos.count
+          张
+          %br
+          %span#albumOpr.hide
+          = link_to '删除', p_album, :confirm => '确定删除此相册?注意：删除此相册的同时，此相册下的所有照片也会被删除！', :method => :delete
+          = link_to '修改', edit_p_album_path(p_album)
+  .field
+    = f.label :相册名称
+    %br
+    = f.text_field :album_name
+  .field
+    = f.label :相册描述
+    %br
+    = f.text_area :album_description, :rows => 6
+  .actions
+    = f.submit @action_name, :class => 'btn btn-primary'

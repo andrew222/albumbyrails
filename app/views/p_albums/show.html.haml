@@ -13,6 +13,6 @@
     %td= @p_album.album_name
     %td= @p_album.album_description
     %td.images
-      - @photos=UploadPhoto.where(["albumBelongTo=?", @p_album.album_name])
+      - @photos=UploadPhoto.where(albumBelongTo: @p_album.album_name)
       - @photos.each do |photo|
         = link_to image_tag("upload/"+photo.photoURL, :width => "100"), photo

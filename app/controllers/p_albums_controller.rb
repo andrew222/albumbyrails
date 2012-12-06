@@ -83,7 +83,7 @@ class PAlbumsController < ApplicationController
   # DELETE /p_albums/1.json
   def destroy
     @p_album = PAlbum.find(params[:id])
-    _delRecord("upload_photos", "albumBelongTo", @p_album.album_name)
+    _delRecord(@p_album.album_name)
     @p_album.destroy
 
     respond_to do |format|
@@ -92,8 +92,8 @@ class PAlbumsController < ApplicationController
     end
   end
   
-  def _delRecord(table,field,value)
-    @photos=UploadPhoto.find_by_sql ["select * from "+table+" where "+field+"=?",value]
+  def _delRecord(value)
+    @photos=UploadPhoto.where(albumBelongTo: value)
     @photos.each do |photo|
       FileUtils.rm($uploadFolder+"/"+photo.photoURL)
       photo.destroy

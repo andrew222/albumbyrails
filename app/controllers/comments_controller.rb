@@ -1,11 +1,11 @@
+# encoding: utf-8 
 class CommentsController < ApplicationController
   before_filter :find_photo
   before_filter :format_time
 
   def create 
-    # @action_name = "提交"
-    @comment = @upload_photo.comments.build(params[:comment].merge(:user => current_user))
-    @comment.update_attribute(:post_time, @now)
+    @comment = @upload_photo.comments.new(params[:comment])
+    @comment.update_attribute(:user_id, current_user.id)
     respond_to do |format|
       if @comment.save
         flash[:notice] = "评论保存成功！"
