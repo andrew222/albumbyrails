@@ -8,7 +8,7 @@ class UploadPhotosController < ApplicationController
   before_filter :find_photo, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @upload_photos = UploadPhoto.where(id: current_user.id)
+    @upload_photos = UploadPhoto.where(user_id: current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -49,18 +49,12 @@ class UploadPhotosController < ApplicationController
         description: options[:description],
         photoURL: uploadPhoto(options[:photoURL]),
         albumBelongTo: options[:albumBelongTo],
-        user_id: options[:user_id]
+        user_id: current_user.id
     )
-      respond_to do |format|
-      # #   if @upload_photo.save
-          format.html { redirect_to @upload_photo, :notice => '照片上传成功。' }
-          format.json { render :json => @upload_photo, :status => :created, :location => @upload_photo }
-      #   # else
-      #   #   format.html { render :action => "new" }
-      #   #   format.json { render :json => @upload_photo.errors, :status => :unprocessable_entity }
-      #   # end
-      end
-    #end
+    respond_to do |format|
+      format.html { redirect_to @upload_photo, :notice => '照片上传成功。' }
+      format.json { render :json => @upload_photo, :status => :created, :location => @upload_photo }
+    end
   end
 
   # PUT /upload_photos/1
@@ -99,14 +93,13 @@ class UploadPhotosController < ApplicationController
   end
   
   def uploadPhoto(file)
-    @fileName=file.original_filename
-    if !@fileName.empty?
-      @fileName=@fileName.split(" ").to_s
+    fileName=file.original_filename
+    if !fileName.empty?
       FileUtils.mkdir($uploadFolder) unless File.exist?($uploadFolder)
-      File.open($uploadFolder+"/#{@fileName}", "wb") do |f|
+      File.open($uploadFolder+"/#{fileName}", "wb") do |f|
         f.write(file.read)
       end
-      return @fileName
+      return fileName
     end
   end
   

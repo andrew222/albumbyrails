@@ -1,0 +1,4 @@
+%h2 所有用户
+.users
+- @users.each do |user|
+  %div= link_to user, user

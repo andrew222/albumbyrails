@@ -1,0 +1,4 @@
+= form_for(UploadPhoto.new, :html => { :multipart => true }) do |f|
+  = render(:partial => "head", :locals => {:name => "andrew"})
+  .actions
+    = f.submit "开始上传", :class => 'btn btn-primary'

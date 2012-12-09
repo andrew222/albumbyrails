@@ -147,6 +147,7 @@ div#foot{
 #startSelectFile{
     width:100px;
     height:20px;
+    margin-bottom: 6px;
     cursor:pointer;
     background-image:url(/assets/icon/select.png);
 }
@@ -186,19 +187,6 @@ textarea{
     font-size: 1.0em;
     border-bottom: 1px solid #FFF;
     border-right: 1px solid #FFF;
-}
-div.actions input{
-    background: #3792B3;
-    border: 1px solid #3792B3;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    width: 52px;
-    color: #FFF;
-    font-weight: bold;
-}
-div.actions input:hover{
-    cursor: pointer;
 }
 input:focus,
 textarea:focus{
