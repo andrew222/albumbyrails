@@ -3,12 +3,12 @@
 	%div{:style => "float: left"}= image_tag ("icon/avatar.png"), :class => "avatar"
 	%div{:style => "margin-left: 5em"}
 		%h4
-			= link_to comment.user_id, user_path(comment.user_id)
+			= link_to User.find(comment.user_id).name, user_path(comment.user_id)
 			发表于：
 			= comment.created_at.strftime("%Y-%m-%d %H:%M:%S")
 	%div{:style => "margin-left: 5em"}
 		= simple_format(comment.text)
-		- if current_user.id == comment.user_id
+		- if session[:current_user].id == comment.user_id
 			= link_to "编辑", edit_upload_photo_comment_path(@upload_photo, comment)
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			= link_to "删除", [@upload_photo, comment], :method => :delete

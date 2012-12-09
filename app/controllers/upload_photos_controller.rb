@@ -2,8 +2,7 @@
 class UploadPhotosController < ApplicationController
   # GET /upload_photos
   # GET /upload_photos.json
-  before_filter :authenticate_user!, :except => [:index,
-                                             :show]
+  before_filter :login_required
   
   before_filter :find_photo, :only => [:show, :edit, :update, :destroy]
   

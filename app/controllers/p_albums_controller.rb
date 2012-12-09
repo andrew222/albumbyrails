@@ -2,8 +2,7 @@
 class PAlbumsController < ApplicationController
   # GET /p_albums
   # GET /p_albums.json
-  before_filter :authenticate_user!, :except => [:index,
-                                             :show]
+  before_filter :login_required
   
   def index
     @p_albums = PAlbum.where(user_id: current_user.id)

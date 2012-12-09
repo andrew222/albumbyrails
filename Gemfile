@@ -13,8 +13,6 @@ gem "heroku"
 
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
-gem 'devise'
-
 gem 'simple_form', '~> 2.0.0'
 
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS

@@ -1,0 +1,11 @@
+%h2 登录
+= form_tag(:action => :login)
+%label{:for => "user_login"} 用户名
+= text_field "user", "name", :size => 20
+
+%label{:for => "user_password"} 密码
+= password_field "user", "password", :size => 20
+%br
+= submit_tag "登录", :class => 'btn btn-primary'
+.signup
+	=link_to '注册', 'signup'

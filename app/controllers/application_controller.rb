@@ -1,5 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  def current_user
+		session[:current_user]
+	end
+	def login_required
+    if session[:current_user]
+      return true
+    end
+
+    flash[:warning]='Please login to continue'
+    redirect_to :controller => "users", :action => "login"
+    return false 
+  end
   
   private
   

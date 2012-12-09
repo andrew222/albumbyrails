@@ -7,9 +7,7 @@ class UploadPhoto
  	field :description
  	field :photoURL
  	field :albumBelongTo
- 	# field :user_id
  	
-  # belongs_to :user
   belongs_to :p_album
   has_many :comments, dependent: :delete
  
