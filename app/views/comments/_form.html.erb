@@ -1,23 +1,23 @@
 <strong><%= @action_name %>评论</strong>
-<%
-	if @action_name == nil
-		@action_name = "提交"
-%>
-	<%= form_for ([@upload_photo, @comment], :remote => true) do |f|%>
-
-	<p>
-	<%= f.label :text, "评论内容："%>
-	<%= f.text_area :text, :rows => 6 %>
-	</p>
-	<div class="actions"><%= f.submit @action_name %></div>
-	<% end %>
-<% else %>
 
 	<%= form_for ([@upload_photo, @comment]) do |f|%>
+
 	<p>
 	<%= f.label :text, "评论内容："%>
 	<%= f.text_area :text, :rows => 6 %>
 	</p>
-	<div class="actions"><%= f.submit @action_name %></div>
+	<div class="actions"><%= f.submit @action_name || "提交" %></div>
 	<% end %>
+
+
+<%
+	if @action_name == nil
+%>
+<script type="text/javascript">
+	$("#new_comment").attr("data-remote") = true;
+</script>
+<% else %>
+<script type="text/javascript">
+	$("form").removeAttr("data-remote");
+</script>
 <% end %>

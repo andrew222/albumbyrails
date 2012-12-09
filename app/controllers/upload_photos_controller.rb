@@ -6,7 +6,7 @@ class UploadPhotosController < ApplicationController
                                              :show]
   
   before_filter :find_photo, :only => [:show, :edit, :update, :destroy]
-  
+
   def index
     @upload_photos = UploadPhoto.where(id: current_user.id)
 
