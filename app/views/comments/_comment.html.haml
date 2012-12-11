@@ -7,8 +7,9 @@
 			发表于：
 			= comment.created_at.strftime("%Y-%m-%d %H:%M:%S")
 	%div{:style => "margin-left: 5em"}
-		= simple_format(comment.text)
+		= RedCloth.new(comment.text)
 		- if session[:current_user].id == comment.user_id
+			%br
 			= link_to "编辑", edit_upload_photo_comment_path(@upload_photo, comment)
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			= link_to "删除", [@upload_photo, comment], :method => :delete

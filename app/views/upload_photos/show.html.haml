@@ -11,7 +11,7 @@
 #comments
   - if @upload_photo.comments.exists?
     %h3 所有评论
-    = render @upload_photo.comments.select(&:persisted?)
+    = render @upload_photo.comments.scoped.order_by("created_at ASC")
   - else
     %h3 暂时没有评论！
   %hr  

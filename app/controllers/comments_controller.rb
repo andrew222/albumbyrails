@@ -1,4 +1,6 @@
 # encoding: utf-8 
+require 'RedCloth'
+
 class CommentsController < ApplicationController
   before_filter :find_photo
   before_filter :format_time

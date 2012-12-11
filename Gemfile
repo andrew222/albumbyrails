@@ -20,8 +20,8 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails", '~> 2.0.3'
 
 gem 'sqlite3'
-# gem 'mysql2'
-# gem 'pg'
+
+gem 'RedCloth'
 
 gem "mongoid", "~> 3.0.0"
 
@@ -35,6 +35,12 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+	gem 'colored'
+	gem 'pry'
+	gem 'pry-coolline'
 end
 
 gem 'jquery-rails'

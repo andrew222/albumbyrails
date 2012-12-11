@@ -40,4 +40,12 @@ MyAlbum::Application.configure do
   config.action_mailer.delivery_method = :smtp 
   
   config.action_mailer.default_url_options = { :host => '192.168.13.85:3000' }
+
+  silence_warnings do
+    begin
+      require 'pry'
+      IRB = Pry
+      rescue LoadError
+      end
+    end
 end
