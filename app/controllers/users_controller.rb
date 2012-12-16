@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    current_user = nil
+    # current_user = nil
   end
 
   def login
@@ -33,14 +33,17 @@ class UsersController < ApplicationController
   def signup
     if request.post?
       options = params[:user]
-      @user = User.create({
+      @user = User.new({
         name: options[:name],
         password: options[:password],
         email: options[:email]
         })
-      puts @user._id.to_s.red_on_yellow
-      session[:current_user] = User.where(id: @user._id).first
-      redirect_to "/p_albums/new"
+      if @user.save
+        session[:current_user] = User.where(id: @user._id).first
+        redirect_to "/p_albums/new"
+      else
+        redirect_to :action => :signup
+      end
     end
   end
 end

@@ -30,7 +30,7 @@ describe User do
   	@user.hashed_password.should_not eql(@user.password)
   end
   it "should be 10 lenght of salt" do
-  	@user.salt.length == 10 
+  	@user.salt.length.should eql(10)
   end  	
   it "should be can login use name and password" do
   	@user.hashed_password.should eql(User.authenticate(@user.name, @user.password).hashed_password)
