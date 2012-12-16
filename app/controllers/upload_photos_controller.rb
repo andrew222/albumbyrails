@@ -103,9 +103,7 @@ class UploadPhotosController < ApplicationController
   end
   
   def delPhoto(filename)
-    if !filename.empty?
-      FileUtils.rm($uploadFolder+"/"+filename)
-    end
+      FileUtils.rm($uploadFolder+"/"+filename) unless filename.empty?
   end
   
   def checkFileType(fileName)

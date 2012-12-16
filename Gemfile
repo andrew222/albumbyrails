@@ -39,8 +39,20 @@ end
 
 group :development do
 	gem 'colored'
-	gem 'pry'
+	gem 'pry-rails'
 	gem 'pry-coolline'
+end
+
+group :development, :test do
+	gem 'rspec-rails',				'~>2.12.0'
+  gem 'factory_girl_rails', '~>4.1.0'
+end
+
+group :test do
+  gem 'faker', 			'~>1.1.2'
+  gem 'capybara', 	'~>2.0.1'
+  gem 'guard-rspec','~>2.3.1'
+  gem 'launchy',		'~>2.1.0'
 end
 
 gem 'jquery-rails'
@@ -58,8 +70,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
-
-group :development, :test do
-	gem 'rspec-rails'
-end
+# gem 'ruby-debug

@@ -21,13 +21,13 @@
     #content
       .nav{:style => "float:right"}
         %p
-          - if session[:current_user].nil?
+          - if current_user.nil?
             = link_to("注册", "/signup")
             |
             = link_to("登录", "/login")
           - else
             当前用户
-            = link_to(session[:current_user].name, session[:current_user])
+            = link_to(current_user.to_s, current_user)
             |
             =link_to("退出", '/logout')
       %div{:style => "height:80px;padding:0;margin:0;"}
@@ -43,6 +43,6 @@
           %li= link_to '管理照片', upload_photos_path
           %li 查询照片
       = yield
-      - unless session[:current_user].nil?
+      - unless current_user.nil?
         %div= link_to "查看所有用户>>", users_path
     #foot Copyright©2010-2012 版权所有

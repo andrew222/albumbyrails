@@ -36,10 +36,10 @@ class UsersController < ApplicationController
       @user = User.create({
         name: options[:name],
         password: options[:password],
-        email: options[:email],
-        password: options[:password]
+        email: options[:email]
         })
-      session[:current_user] = @user
+      puts @user._id.to_s.red_on_yellow
+      session[:current_user] = User.where(id: @user._id).first
       redirect_to "/p_albums/new"
     end
   end

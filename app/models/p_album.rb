@@ -10,6 +10,5 @@ class PAlbum
 	validates_uniqueness_of :album_name, :uniqueness => true, :message => "必须唯一"
 
  	has_many :upload_photos, dependent: :delete
- 	# belongs_to :user
- 	
+ 	belongs_to :user
 end

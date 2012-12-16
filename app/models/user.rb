@@ -7,13 +7,14 @@ class User
   field :hashed_password
   field :salt
 
-  # has_many :p_albums, dependent: :delete
+  has_many :p_albums, dependent: :delete
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  validates  :email, :name, :password, :presence => true
   
   def to_s
-    "#{email}"
+    self.name
   end
 
   attr_protected :_id, :salt
@@ -21,16 +22,20 @@ class User
   attr_accessor :password, :password_confirmation
 
   def password=(pass)
-    @password = pass
-    self.salt = User.random_string(10) if !self.salt?
-    self.hashed_password = User.encrypt(@password, self.salt)
+    unless pass.nil?
+      @password = pass
+      self.salt = User.random_string(10) if !self.salt?
+      self.hashed_password = User.encrypt(@password, self.salt)
+    end
   end
 
   def self.authenticate(name, pass)
-    user = where(name: name).first
-    return nil if user.nil?
-    return user if User.encrypt(pass, user.salt)==user.hashed_password
-    nil
+    unless name.nil? or pass.nil?
+      user = where(name: name).first
+      return nil if user.nil?
+      return user if User.encrypt(pass, user.salt)==user.hashed_password
+      nil
+    end
   end
   
   protected

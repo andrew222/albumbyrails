@@ -16,7 +16,7 @@
     %h3 暂时没有评论！
   %hr  
   = render "comments/form"
-  - if @upload_photo.user_id == session[:current_user].id
+  - if @upload_photo.user_id == current_user.id
     = link_to '编辑', edit_upload_photo_path(@upload_photo)
     |
     = link_to '后退', upload_photos_path
