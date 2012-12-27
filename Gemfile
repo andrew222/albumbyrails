@@ -53,6 +53,7 @@ group :test do
   gem 'capybara', 	'~>2.0.1'
   gem 'guard-rspec','~>2.3.1'
   gem 'launchy',		'~>2.1.0'
+  gem "shoulda-matchers"
 end
 
 gem 'jquery-rails'
