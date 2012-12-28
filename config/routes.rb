@@ -1,5 +1,7 @@
 MyAlbum::Application.routes.draw do
-
+  if Rails.env.development?
+    mount Resque::Server.new, :at => "/resque"
+  end
   match 'login' => 'users#login', :as => :login
   match 'logout' => 'users#logout', :as => :logout
   match 'signup' => 'users#signup', :as => :signup

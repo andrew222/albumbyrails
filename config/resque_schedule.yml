@@ -1,0 +1,6 @@
+album_send_email:
+  cron: 0 0 * * *
+  class: SendEmailJob
+  queue: album_send_email
+  args:
+  description: Send Email

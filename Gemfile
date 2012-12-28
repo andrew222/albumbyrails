@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2.rc1'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'execjs'
 
 gem 'therubyracer', :platform => :ruby
@@ -26,6 +23,10 @@ gem 'RedCloth'
 gem "mongoid", "~> 3.0.0"
 
 gem 'json'
+
+gem 'resque',                         '~> 1.23.0', require: 'resque/server'
+
+gem 'resque-scheduler',               :require => 'resque_scheduler'
 
 # Gems used only for assets and not required
 # in production environments by default.
