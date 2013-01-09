@@ -8,7 +8,7 @@ gem 'therubyracer', :platform => :ruby
 
 gem "heroku"
 
-gem 'haml-rails', '>= 0.3.4', :group => :development
+gem 'haml-rails', '>= 0.3.4'
 
 gem 'simple_form', '~> 2.0.0'
 
