@@ -22,5 +22,4 @@ describe "p_albums/index.html.haml" do
 	it { should have_selector('th', text: '相册名称') }
 	it { should have_selector('th', text: '相册描述') }
 	it { should have_selector('th', text: '操作') }
-	# it { should have_selector("tr>td", :text => "Name".to_s, :count => 2) }
 end
