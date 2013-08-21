@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       options = params[:user]
       if session[:current_user] = User.authenticate(options[:name], options[:password])
         flash[:message] = 'Log in successful'
-        redirect_to '/p_albums/new'
+        redirect_to new_p_album_path
       else
         flash[:warning] = "Login unsuccessful"
         redirect_to :action => :login
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         })
       if @user.save
         session[:current_user] = User.where(id: @user._id).first
-        redirect_to "/p_albums/new"
+        redirect_to new_p_album_path
       else
         redirect_to :action => :signup
       end
