@@ -44,6 +44,8 @@ class UsersController < ApplicationController
       else
         redirect_to :action => :signup
       end
+    elsif request.get?
+      @user = User.new()
     end
   end
 end

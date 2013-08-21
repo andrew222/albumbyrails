@@ -1,15 +1,7 @@
 %h2 注册
-= form_tag(:action => :signup)
-%label{:for => "user_login"} 用户名
-= text_field "user", "name", :size => 20
-
-%label{:for => "user_email"} 邮箱
-= text_field "user", "email", :size => 20
-
-%label{:for => "user_password"} 密码
-= password_field "user", "password", :size => 20
-
-%label{:for => "user_password_confirmation"} 确认密码
-= password_field "user", "password_confirmation", :size => 20
-%br
-= submit_tag "注册", :class => 'btn btn-primary'
+= simple_form_for(@user, url: signup_path(@user)) do |f|
+	= f.input :name, :label => "用户名", :size => 20, :autofocus => true
+	= f.input :email, :label => "邮箱", :size => 20
+	= f.input :password, :label => "密码", :size => 20
+	= f.input :password_confirmation, :label => "确认密码", :size => 20
+	= f.submit "注册", :class => 'btn btn-primary'

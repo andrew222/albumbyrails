@@ -1,0 +1,14 @@
+= form_for @user do |f|
+  = f.error_messages
+  %p
+    = f.label :email, "邮箱"
+    = f.text_field :email
+  %p
+    = f.label :password, "密码"
+    = f.password_field :password
+  /
+    <p>
+    <haml:loud> f.check_box :admin </haml:loud>
+    <haml:loud> f.label :admin, &quot;是否是管理员？&quot; </haml:loud>
+    </p>
+  = f.submit @action_name, :class => 'btn btn-primary'
