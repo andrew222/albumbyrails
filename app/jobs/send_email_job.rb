@@ -1,10 +1,12 @@
 # encoding: utf-8
 
 class SendEmailJob
-  @queue = :album_send_email
+  @queue = :send_email_job
 
-  def self.perform
-    puts 'testtest'
+  def self.perform(email_type, user_id)
+  	@user = User.where(id: user_id).first
+  	if email_type.downcase == "welcome"
+  		UserMailer.welcome_email(@user).deliver
+  	end
   end
-  
 end

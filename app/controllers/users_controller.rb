@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         })
       if @user.save
         session[:current_user] = User.where(id: @user._id).first
-        send_welcome_email(session[:current_user])
+        Resque.enqueue(SendEmailJob, "welcome", @user._id)
         redirect_to new_p_album_path
       else
         redirect_to :action => :signup
@@ -48,9 +48,5 @@ class UsersController < ApplicationController
     elsif request.get?
       @user = User.new()
     end
-  end
-
-  def send_welcome_email(user)
-    UserMailer.welcome_email(user)
   end
 end
