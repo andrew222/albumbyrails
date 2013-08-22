@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
-
+  
   def current_user
 		session[:current_user]
 	end
@@ -9,9 +9,18 @@ class ApplicationController < ActionController::Base
       return true
     end
 
-    flash[:warning]='Please login to continue'
-    redirect_to :controller => "users", :action => "login"
+    flash[:error]='Please login to continue'
+    redirect_to login_path
     return false 
+  end
+
+  def help
+    Helper.instance
+  end
+   
+  class Helper
+    include Singleton
+    include ActionView::Helpers::UrlHelper
   end
   
   private

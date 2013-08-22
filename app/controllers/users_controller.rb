@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         flash[:message] = 'Log in successful'
         redirect_to new_p_album_path
       else
-        flash[:warning] = "Login unsuccessful"
+        flash[:error] = "Login unsuccessful"
         redirect_to :action => :login
       end
     end
@@ -39,14 +39,26 @@ class UsersController < ApplicationController
         email: options[:email]
         })
       if @user.save
-        session[:current_user] = User.where(id: @user._id).first
+        flash[:message] = "Register in successful.Please checkout your email."
         Resque.enqueue(SendEmailJob, "welcome", @user._id)
-        redirect_to new_p_album_path
+        redirect_to login_path
       else
+        flash[:error] = check_validata(@user)
         redirect_to :action => :signup
       end
     elsif request.get?
       @user = User.new()
+    end
+  end
+
+  def check_validata(user)
+    errors = user.errors
+    if errors[:email].size > 0
+      "Email: '#{user.email}' " + errors[:email].first
+    elsif errors[:name].size > 0
+      "Name: '#{user.name}' " + errors[:name].first
+    elsif errors[:password].size > 0
+      "Password: '#{user.password}' " + errors[:password].first
     end
   end
 end

@@ -11,7 +11,7 @@ class User
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  validates :name, :presence => true
+  validates :name, :presence => true, :uniqueness => true
   validates :password,  presence: true, confirmation: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/, message: "invalid email"
   validates_uniqueness_of :email, message: "is already taken"

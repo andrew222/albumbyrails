@@ -1,6 +1,6 @@
-# album_send_email:
-#   cron: 0 0 * * *
-#   class: SendEmailJob
-#   queue: send_email_job
-#   args:
-#   description: Send Email
+album_send_email:
+  cron: 0 0 * * *
+  class: SendEmailJob
+  queue: queue_test
+  args:
+  description: Send Email
