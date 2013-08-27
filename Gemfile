@@ -42,6 +42,7 @@ group :development do
 	gem 'colored'
 	gem 'pry-rails'
 	gem 'pry-coolline'
+  gem 'awesome_print'
 end
 
 group :development, :test do
