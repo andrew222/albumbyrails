@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  has_many :p_album, :dependent => :destroy
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-=======
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -16,7 +8,6 @@ class User
   field :salt
 
   has_many :p_albums, dependent: :delete
->>>>>>> railsPro
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me

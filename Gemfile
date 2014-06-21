@@ -6,6 +6,8 @@ gem 'execjs'
 
 gem 'therubyracer', :platform => :ruby
 
+gem 'carrierwave'
+
 gem "heroku"
 
 gem 'haml-rails', '>= 0.3.4'
@@ -73,12 +75,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-<<<<<<< HEAD
 # gem 'ruby-debug'
-
-group :development, :test do
-gem 'rspec-rails'
-end
-=======
-# gem 'ruby-debug
->>>>>>> railsPro
