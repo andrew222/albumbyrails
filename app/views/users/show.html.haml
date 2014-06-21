@@ -1,0 +1,15 @@
+%h2 当前用户信息
+%div
+  %strong Email：
+  = @user.email
+%div
+  %strong 所有照片：
+  %table
+    %tr
+      %td 标题
+      %td 描述
+    - @upload_photos.each do |photo|
+      %tr
+        %td= link_to photo.title, photo
+        %td= photo.description
+  %table

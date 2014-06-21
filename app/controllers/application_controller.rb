@@ -1,5 +1,27 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  helper_method :current_user
+  
+  def current_user
+		session[:current_user]
+	end
+	def login_required
+    if session[:current_user]
+      return true
+    end
+
+    flash[:error]='Please login to continue'
+    redirect_to login_path
+    return false 
+  end
+
+  def help
+    Helper.instance
+  end
+   
+  class Helper
+    include Singleton
+    include ActionView::Helpers::UrlHelper
+  end
   
   private
   

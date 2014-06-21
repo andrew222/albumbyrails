@@ -1,13 +1,17 @@
 MyAlbum::Application.routes.draw do
-  devise_for :users
-
+  if Rails.env.development?
+    mount Resque::Server.new, :at => "/resque"
+  end
+  match 'login' => 'users#login', :as => :login
+  match 'logout' => 'users#logout', :as => :logout
+  match 'signup' => 'users#signup', :as => :signup
   resources :p_albums
 
   resources :upload_photos do
     resources :comments
   end
   
-  devise_for :users
+  # devise_for :users
   
   resources :users
   

@@ -1,9 +1,6 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org/'
 
 gem 'rails', '3.2.2.rc1'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'execjs'
 
@@ -11,9 +8,7 @@ gem 'therubyracer', :platform => :ruby
 
 gem "heroku"
 
-gem 'haml-rails', '>= 0.3.4', :group => :development
-
-gem 'devise'
+gem 'haml-rails', '>= 0.3.4'
 
 gem 'simple_form', '~> 2.0.0'
 
@@ -22,12 +17,16 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails", '~> 2.0.3'
 
 gem 'sqlite3'
-# gem 'mysql2'
-# gem 'pg'
+
+gem 'RedCloth'
 
 gem "mongoid", "~> 3.0.0"
 
 gem 'json'
+
+gem 'resque',                         '~> 1.23.0', require: 'resque/server'
+
+gem 'resque-scheduler',               :require => 'resque_scheduler'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -37,6 +36,26 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+	gem 'colored'
+	gem 'pry-rails'
+	gem 'pry-coolline'
+  gem 'awesome_print'
+end
+
+group :development, :test do
+	gem 'rspec-rails',				'~>2.12.0'
+  gem 'factory_girl_rails', '~>4.1.0'
+end
+
+group :test do
+  gem 'faker', 			'~>1.1.2'
+  gem 'capybara', 	'~>2.0.1'
+  gem 'guard-rspec','~>2.3.1'
+  gem 'launchy',		'~>2.1.0'
+  gem "shoulda-matchers"
 end
 
 gem 'jquery-rails'
@@ -54,8 +73,12 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
+<<<<<<< HEAD
 # gem 'ruby-debug'
 
 group :development, :test do
 gem 'rspec-rails'
 end
+=======
+# gem 'ruby-debug
+>>>>>>> railsPro

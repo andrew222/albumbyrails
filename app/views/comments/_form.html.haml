@@ -1,19 +1,19 @@
 %strong
-	= @action_name
-	评论
+  = @action_name
+  评论
 
 - if @action_name == nil
-- @action_name = "提交"
-	= simple_form_for([@upload_photo, @comment], :remote => true) do |f|
-		%p
-			= f.label :text, "评论内容："
-			= f.text_area :text, :rows => 6
-		.actions
-			= f.submit @action_name
-- else
-	= simple_form_for([@upload_photo, @comment]) do |f|
-		%p
-			= f.label :text, "评论内容："
-			= f.text_area :text, :rows => 6
-		.actions
-			= f.submit @action_name
+  - @action_name = "提交"
+  = simple_form_for([@upload_photo, @comment], remote: true) do |f|
+    %div
+      = f.label :text, "评论内容："
+      = f.text_area :text, :rows => 6
+      .actions
+        = f.submit @action_name, :class => 'btn btn-primary'
+- elsif
+  = simple_form_for([@upload_photo, @comment]) do |f|
+    %div
+      = f.label :text, "评论内容："
+      = f.text_area :text, :rows => 6
+    .actions
+      = f.submit @action_name, :class => 'btn btn-primary'

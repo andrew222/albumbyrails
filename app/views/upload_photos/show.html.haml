@@ -5,13 +5,13 @@
   %div 描述：
   = @upload_photo.description
   #image预览：
-  = link_to(image_tag("upload/"+@upload_photo.photoURL, :width => "150", :class => "image_border"), "/assets/upload/<%= @upload_photo.photoURL %>", :title => "点击查看大图")
+  = link_to(image_tag("upload/"+@upload_photo.photoURL, :width => "150", :class => "image_border"), "/assets/upload/#{@upload_photo.photoURL} ", :title => "点击查看大图")
   %div 所属相册：
   = @upload_photo.albumBelongTo
 #comments
   - if @upload_photo.comments.exists?
     %h3 所有评论
-    = render @upload_photo.comments.select(&:persisted?)
+    = render @upload_photo.comments.scoped.order_by("created_at ASC")
   - else
     %h3 暂时没有评论！
   %hr  

@@ -15,17 +15,20 @@
     %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
-    %link(href="images/favicon.ico" rel="shortcut icon")
   %body{:onload => "_init();"}
     #log
     #content
       .nav{:style => "float:right"}
         %p
-          - if user_signed_in?
-            当前用户#{link_to current_user.email, current_user}|#{link_to "退出", destroy_user_session_path, :method => :delete}
+          - if current_user.nil?
+            = link_to("注册", "/signup")
+            |
+            = link_to("登录", "/login")
           - else
-            = link_to "注册", new_user_registration_path
-            |#{link_to "登录", new_user_session_path}
+            当前用户
+            = link_to(current_user.to_s, current_user)
+            |
+            =link_to("退出", '/logout')
       %div{:style => "height:80px;padding:0;margin:0;"}
         .myTabUI
           %ul.albumTabs
@@ -38,7 +41,15 @@
           %li= link_to "上传照片", new_upload_photo_path
           %li= link_to '管理照片', upload_photos_path
           %li 查询照片
+      - if flash[:message]
+        .alert.alert-success
+          %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+          = flash[:message]
+      - elsif flash[:error]
+        .alert.alert-error
+          %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+          = flash[:error]
       = yield
-      - if user_signed_in?
+      - unless current_user.nil?
         %div= link_to "查看所有用户>>", users_path
     #foot Copyright©2010-2012 版权所有

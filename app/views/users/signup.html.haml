@@ -1,0 +1,7 @@
+%h2 注册
+= simple_form_for(@user, url: signup_path(@user)) do |f|
+  = f.input :name, :label => "用户名", :size => 20, :autofocus => true
+  = f.input :email, :label => "邮箱", :size => 20
+  = f.input :password, :label => "密码", :size => 20
+  = f.input :password_confirmation, :label => "确认密码", :required => true, :size => 20
+  = f.submit "注册", :class => 'btn btn-primary'
