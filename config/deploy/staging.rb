@@ -1,3 +1,32 @@
+role :app, %w{nuri.ekohe.com}
+role :web, %w{nuri.ekohe.com}
+role :db,  %w{nuri.ekohe.com}
+
+set :application, 'figaro_sixiangbali'
+set :staged_application, 'figaro_sixiangbali_staging'
+set :deploy_to, "/var/www/staging/#{fetch(:application)}"
+set :rvm_ruby_version, "2.1.1@#{fetch(:application)}_staging"
+server 'nuri.ekohe.com', user: fetch(:user), roles: %w{web app}
+
+namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 25 do
+      execute "sudo monit restart #{fetch(:staged_application)}_1"
+      execute "sudo monit restart #{fetch(:staged_application)}_2"
+    end
+  end
+
+  [:stop, :start].each do |action|
+    task action do
+      on roles(:app) do
+        execute "sudo monit #{action} #{fetch(:staged_application)}_1"
+        execute "sudo monit #{action} #{fetch(:staged_application)}_2"
+      end
+    end
+  end
+end
+
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary server in each group

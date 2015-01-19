@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+  <div id="photo">
+    <div>标题：<%= @upload_photo.title %></div>
+    <div>描述：<%= @upload_photo.description %></div>
+    <div id="image">预览：<a href="/assets/upload/<%= @upload_photo.photoURL %>" title="点击查看大图"><%= image_tag("upload/"+@upload_photo.photoURL, :width => "150", :class => "image_border") %></a></div>
+    <div>所属相册：<%= @upload_photo.albumBelongTo %></div>
+  </div>
+  
+  <div id="comments">
+    <% if @upload_photo.comments.exists? %>
+      <h3>所有评论</h3>
+      <%= render @upload_photo.comments.select(&:persisted?) %>
+    <% else %>
+      <h3>暂时没有评论！</h3>
+    <% end %>
+  </div>
+    <hr />  
+    <%= render "comments/form"%>
+
+<% if @upload_photo.user_id == current_user.id %>
+<%= link_to '编辑', edit_upload_photo_path(@upload_photo) %>|
+<% end %>
+<%= link_to '后退', upload_photos_path %>
+<script type="text/javascript">
+  $("#notice").fadeOut(2000);
+</script>

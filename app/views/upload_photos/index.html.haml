@@ -1,4 +1,6 @@
 %h2所有照片
+.image_search 
+  = text_field_tag "images_search_box", "", {placeholder: "搜索", class: "image_search_box"}
 
 %table
   %tr
@@ -19,3 +21,7 @@
 %br
 
 = link_to '上传新照片', new_upload_photo_path
+:javascript
+  $(document).ready(function(){
+    var all_photos = "#{@upload_photos.map{|photo| [photo.id, photo.title]}}";
+  })

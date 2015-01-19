@@ -5,7 +5,7 @@ class UploadPhotosController < ApplicationController
   before_filter :login_required
   
   before_filter :find_photo, :only => [:show, :edit, :update, :destroy]
-  
+
   def index
     @upload_photos = UploadPhoto.where(user_id: current_user.id)
 

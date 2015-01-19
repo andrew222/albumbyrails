@@ -16,9 +16,9 @@
           - photos = UploadPhoto.where(albumBelongTo: album_name)
           
           - if photos.count==0
-          = image_tag("icon/no_photo_s.png")
-          %br
-          - else
+            = image_tag("icon/no_photo_s.png")
+            %br
+          - elsif
             - photoFirst=photos.first
             .image= link_to image_tag("upload/"+photoFirst.photoURL, :width => "100"), p_album
           %br

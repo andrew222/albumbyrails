@@ -1,7 +1,6 @@
-= if flash.message
-  .alert alert-error
-    %button.close &times;
-    = flash.message
+- if flash[:message]
+  .alert.alert-error
+    = flash[:message]
 %h2所有相册
 = link_to '创建新相册+', new_p_album_path
 %table

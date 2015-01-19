@@ -1,10 +1,12 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org/'
 
 gem 'rails', '3.2.2.rc1'
 
 gem 'execjs'
 
 gem 'therubyracer', :platform => :ruby
+
+gem 'carrierwave'
 
 gem "heroku"
 
@@ -31,7 +33,7 @@ gem 'resque-scheduler',               :require => 'resque_scheduler'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -39,14 +41,19 @@ group :assets do
 end
 
 group :development do
-	gem 'colored'
-	gem 'pry-rails'
-	gem 'pry-coolline'
+  gem 'colored'
+  gem 'pry-rails'
+  gem 'pry-coolline'
   gem 'awesome_print'
 end
 
 group :development, :test do
-	gem 'rspec-rails',				'~>2.12.0'
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-faster-assets'
+  gem 'rspec-rails',				'~>2.12.0'
   gem 'factory_girl_rails', '~>4.1.0'
 end
 
@@ -69,8 +76,5 @@ gem 'jquery-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-gem 'capistrano'
-
 # To use debugger
-# gem 'ruby-debug
+# gem 'ruby-debug'
