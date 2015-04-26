@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org/'
+source 'https://ruby.taobao.org/' from railsPro
 
 gem 'rails', '3.2.2.rc1'
 
