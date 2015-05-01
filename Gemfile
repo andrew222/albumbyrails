@@ -18,8 +18,6 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 
 gem "twitter-bootstrap-rails", '~> 2.0.3'
 
-gem 'sqlite3'
-
 gem 'RedCloth'
 
 gem "mongoid", "~> 3.0.0"
@@ -30,6 +28,7 @@ gem 'resque',                         '~> 1.23.0', require: 'resque/server'
 
 gem 'resque-scheduler',               :require => 'resque_scheduler'
 
+gem 'mongoid_rails_migrations', '~>1.0.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -41,14 +40,14 @@ group :assets do
 end
 
 group :development do
-	gem 'colored'
-	gem 'pry-rails'
-	gem 'pry-coolline'
+  gem 'colored'
+  gem 'pry-rails'
+  gem 'pry-coolline'
   gem 'awesome_print'
 end
 
 group :development, :test do
-	gem 'rspec-rails',				'~>2.12.0'
+  gem 'rspec-rails',				'~>2.12.0'
   gem 'factory_girl_rails', '~>4.1.0'
 end
 
@@ -61,18 +60,3 @@ group :test do
 end
 
 gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'

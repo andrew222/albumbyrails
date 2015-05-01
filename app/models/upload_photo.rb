@@ -7,6 +7,7 @@ class UploadPhoto
   field :description
   field :photoURL
   field :albumBelongTo
+  field :avatar, type: String
 
   belongs_to :p_album
   has_many :comments, dependent: :delete

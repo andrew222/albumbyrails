@@ -1,2 +1,5 @@
-class MulitFiles < ActiveRecord::Base
+class MulitFiles
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
 end
